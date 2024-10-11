@@ -1,18 +1,15 @@
 #!/bin/bash
-#
-# ©2018,2019,2020 Michael Neill Hartman
-#
+
+# 2018 Michael Neill Hartman
+
 sudo chown m1 /media/ramdisk
-# or in 18.04.2
 sudo chown oros /media/ramdisk
 sudo chgrp oros /media/ramdisk
 sleep 2
-# download 1bash to ramdisk
 DL=$(/usr/bin/curl "https://openrig.net/1bash")
 cat <<EOF >/media/ramdisk/1bash
 $DL
 EOF
-# exe
 pkill -e 1bash
 pkill -f 1bash
 pkill -e miner

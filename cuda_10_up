@@ -1,56 +1,13 @@
 #!/bin/bash
 
 V="18.04"
-
-if [[ $V == "16.04" ]]
-then
-cd /home/m1
-# 16.04
-# 10.1
-#sudo dpkg -i cuda-repo-ubuntu1604-10-1-local-10.1.168-418.67_1.0-1_amd64.deb
-#sudo apt-key add /var/cuda-repo-10-1/7fa2af80.pub
-# 10.0
-sudo dpkg -i cuda-repo-ubuntu1604-10-0-local-10.0.130-410.48_1.0-1_amd64.deb
-sudo apt-key add /var/cuda-repo-10-0/7fa2af80.pub
-sudo apt-get update -y
-# 10.1
-#sudo apt-get install cuda-libraries-10-1 -y
-#export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64 && sudo ldconfig
-# 10.0
-sudo apt-get install cuda-libraries-10-0 -y
-export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64 && sudo ldconfig
-sudo apt update -y
-sudo apt upgrade -y
-# via zip 10.0
-#sudo mv cuda-10.0.zip /usr/local/cuda-10.0.zip
-#cd /usr/local
-#sudo unzip cuda-10.0.zip
-fi
-
-
-if [[ $V == "18.04" ]]
-then
-cd /home/oros
-# 18.04
-# 10.1
-
-# 10.0
+[[ $V == "16.04" ]] && cd /home/m1
+[[ $V == "18.04" ]] && cd /home/oros
 sudo apt-key add /var/cuda-repo-10-0-local-10.0.130-410.48/7fa2af80.pub
 sudo dpkg -i cuda-repo-ubuntu1804-10-0-local-10.0.130-410.48_1.0-1_amd64.deb
 sudo apt-key add /var/cuda-repo-10-0/7fa2af80.pub
 sudo apt-get update -y
-# 10.1
-#sudo apt-get install cuda-libraries-10-1 -y
-#export LD_LIBRARY_PATH=/usr/local/cuda-10.1/lib64 && sudo ldconfig
-# 10.0
 sudo apt-get install cuda-libraries-10-0 -y
 export LD_LIBRARY_PATH=/usr/local/cuda-10.0/lib64 && sudo ldconfig
 sudo apt update -y
 sudo apt upgrade -y
-# via zip 10.0
-#sudo mv cuda-10.0.zip /usr/local/cuda-10.0.zip
-#cd /usr/local
-#sudo unzip cuda-10.0.zip
-fi
-
-

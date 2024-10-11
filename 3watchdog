@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# ©2018,2019,2020 Michael Neill Hartman
+# 2018 Michael Neill Hartman
 #
 
 WATCHDOG_VERSION="1.4"
