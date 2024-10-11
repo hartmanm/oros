@@ -5,55 +5,16 @@
 BASH_VERSION="1.5"
 SUB_VERSION="1"
 WATCHDOG="YES"
-IPFS="NO"
-TIGER_VNC="NO"
-HOLD_VNC="NO"
 sudo ufw enable
 
-
-if [[ $TIGER_VNC == "YES" ]]
-then
-CLIENT="tiger_1604"
-CLIENT_LOCAL="/media/ramdisk/$CLIENT/tiger_vnc"
-DIR="/media/ramdisk/$CLIENT"
-if ! [[ -e "/media/ramdisk/tigervncserver_1.8.0-1ubuntu1_amd64.deb" ]]
-then
-cd /media/ramdisk
-FILENAME="$CLIENT.zip"
-URL="https://storage.googleapis.com/oros/$FILENAME"
-wget --no-check-certificate $URL -O $FILENAME
-sleep 2
-unzip $FILENAME
-sleep 2
-sudo rm -r /media/ramdisk/__MACOSX
-fi ##  if ! [[ -e "/media/ramdisk/tigervncserver_1.8.0-1ubuntu1_amd64.deb" ]]
-VNC=$(which vncserver)
-if [[ $VNC == "" ]]
-then
-echo "installing vnc"
-sudo apt install '/media/ramdisk/tigervncserver_1.8.0-1ubuntu1_amd64.deb' -y
-sleep 3
-fi
 SSH=$(which ssh)
-if [[ $SSH == "" ]]
-then
+[[ $SSH == "" ]] && {
 echo "installing ssh"
 sudo apt install ssh -y
 sleep 3
-fi
-if [[ $HOLD_VNC == "NO" ]]
-then
-#vncserver
-#first time: -thispassword -thispassword -n
-# add sudo ufw allow from computer_ip
-# add sudo ufw allow to computer_ip
-vncserver -list
-fi
-if [[ $HOLD_VNC == "YES" ]]
-then
-cat <<EOF >/media/ramdisk/vnc_log
-#!/bin/bash
-if [[ -d "/media/m1/0rig_here_" ]]
+}
+
+[[ -d "/media/m1/0rig_here_" ]] &&
 then
 IPW=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
 MAC=$(ifconfig -a | grep -Po 'HWaddr \K.*$')
@@ -63,89 +24,10 @@ then
 IPW=$(ip address show | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
 MAC=$(ip link show | grep -Po 'ether \K.*$')
 MAC=${MAC:0:17}
-fi
-while [ 1 ]
-do
-sleep 1
-echo $IPW
-sleep 1
-vncserver -list
-sleep 1
-sudo ufw status
-sleep 5
-done
-EOF
-#cd ~/.vnc
-cat <<EOF >~/.vnc/config
-## Supported server options to pass to vncserver upon invocation can be listed
-## in this file. See the following manpages for more: vncserver(1) Xvnc(1).
-## Several common ones are shown below. Uncomment and modify to your liking.
-##
-# securitytypes=vncauth,tlsvnc
-# desktop=sandbox
-geometry=1920x1080
-localhost
-# alwaysshared
-EOF
-#sleep 2
-#screen -dmS vnc_log bash /media/ramdisk/vnc_log
-#cat /media/ramdisk/vnc_log
-#screen -dmS vnc -L vncserver
-#vncserver -localhost
-#tmux new -s vnc
-#tmux -t vnc
-#tmux
-screen -dmS vnc_log bash /media/ramdisk/vnc_log
-screen -dmS vnc vncserver -localhost
-while [ 1 ]
-do
-echo "inside loop"
-sleep 5
-done
-echo "outside loop"
-sleep 9999999999999
-fi ##  if [[ $HOLD_VNC == "YES" ]]
-fi ##  if [[ $TIGER_VNC == "YES" ]]
 
 
-if [[ $IPFS == "YES" ]]
-then
-CLIENT="ipfs-update"
-CLIENT_LOCAL="/media/ramdisk/$CLIENT/ipfs-update install latest"
-DIR="/media/ramdisk/$CLIENT"
-if [[ ! -d $DIR ]]
-then
-cd /media/ramdisk
-FILENAME="$CLIENT.zip"
-URL="https://storage.googleapis.com/oros/$FILENAME"
-wget --no-check-certificate $URL -O $FILENAME
-sleep 2
-unzip $FILENAME
-sleep 2
-sudo rm -r /media/ramdisk/__MACOSX
-chmod +x /media/ramdisk/$CLIENT/$CLIENT
-fi ##  if [[ $IPFS == "YES" ]]
-DIR="/usr/local/go"
-if [[ ! -d $DIR ]]
-then
-FILENAME="go1.12.5.linux-amd64.tar.gz"
-URL="https://dl.google.com/go/$FILENAME"
-wget --no-check-certificate $URL -O $FILENAME
-tar -C /usr/local -xzf go1.12.5.linux-amd64.tar.gz
-#GO="export PATH=$PATH:/usr/local/go/bin"
-#REPO="export IPFS_PATH=/media/ramdisk/ipfs"
-#sudo echo $GO >> /etc/profile
-#sudo echo $REPO >> /etc/profile
-sudo rm /media/ramdisk/go1.12.5.linux-amd64.tar.gz
-fi
-export IPFS_PATH=/media/ramdisk/ipfs
-$CLIENT_LOCAL
-ipfs init
-sleep 2
-#ipfs add <path>
-HCD="/media/ramdisk/ipfs"
-guake -n $HCD -r ipfsd -e "ipfs daemon"
-fi ## [[ $IPFS == "YES" ]]
+#guake -n $HCD -r ipfsd -e "ipfs daemon"
+
 
 
 if [[ $WATCHDOG == "YES" ]]
