@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# 2018 Michael Neill Hartman
+# Copyright (c) 2018 Michael Neill Hartman. All rights reserved.
+# mnh_license@proton.me
+# https://github.com/hartmanm
 
 BASH_VERSION="1.5"
 SUB_VERSION="1"
@@ -24,11 +26,6 @@ then
 IPW=$(ip address show | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
 MAC=$(ip link show | grep -Po 'ether \K.*$')
 MAC=${MAC:0:17}
-
-
-#guake -n $HCD -r ipfsd -e "ipfs daemon"
-
-
 
 if [[ $WATCHDOG == "YES" ]]
 then
@@ -210,7 +207,6 @@ var=UPDATE
 out=$(echo $RIG | sed 's/\\\\\//\//g' | sed 's/[{}]//g' | awk -v k="text" '{n=split($0,a,","); for (i=1; i<=n; i++) print a[i]}' | sed 's/\"\:\"/\|/g' | sed 's/[\,]/ /g' | sed 's/\"//g' | grep -w $var)
 eval b=($out)
 UPDATE=${b[1]}
-
 
 
 var=self
