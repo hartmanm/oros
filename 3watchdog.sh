@@ -278,7 +278,7 @@ LOG+=$'\n'
 pkill -e miner
 pkill -f miner
 wtelegram
-target=$(ps -ef | awk '$NF~"1bash" {print $2}')
+target=$(ps -ef | awk '$NF~"1bash.sh" {print $2}')
 kill $target
 echo ""
 fi
@@ -357,7 +357,7 @@ LOG+=$'\n'
 pkill -e miner
 pkill -f miner
 wtelegram
-target=$(ps -ef | awk '$NF~"1bash" {print $2}')
+target=$(ps -ef | awk '$NF~"1bash.sh" {print $2}')
 kill $target
 echo ""
 if [[ $GPU_COUNT < 7 ]]
@@ -530,7 +530,7 @@ pkill -e miner
 pkill -f miner
 sendDataCur
 wtelegram
-target=$(ps -ef | awk '$NF~"1bash" {print $2}')
+target=$(ps -ef | awk '$NF~"1bash.sh" {print $2}')
 kill $target
 echo ""
 RESTART=$(($RESTART + 1))
