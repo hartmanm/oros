@@ -1,7 +1,8 @@
 #!/bin/bash
-#
-# 2018 Michael Neill Hartman
-#
+
+# Copyright (c) 2018 Michael Neill Hartman. All rights reserved.
+# mnh_license@proton.me
+# https://github.com/hartmanm
 
 WATCHDOG_VERSION="1.4"
 SUB_VERSION="7"
