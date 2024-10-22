@@ -291,9 +291,9 @@ OUTPUT_LINE="$OVERLORD$SELF"
 fi ## [[ $RE2UNIX == "YES" ]]
 sleep 2
 # download 3watchdog to ramdisk
-URL="$OVERLORD/3watchdog"
+URL="$OVERLORD/3watchdog.sh"
 DL=$(/usr/bin/curl $URL)
-cat <<EOF >/media/ramdisk/3watchdog
+cat <<EOF >/media/ramdisk/3watchdog.sh
 $DL
 EOF
 sleep 2
@@ -728,11 +728,11 @@ sleep 2
 # WATCHDOG
 if [[ $WATCHDOG == "YES" ]]
 then
-HCD='/media/ramdisk/3watchdog'
+HCD='/media/ramdisk/3watchdog.sh'
 echo ""
 echo "LAUNCHING:  Watchdog"
 sleep 2
-running=$(ps -ef | awk '$NF~"3watchdog" {print $2}')
+running=$(ps -ef | awk '$NF~"3watchdog.sh" {print $2}')
 if [ "$running" == "" ]
 then
 guake -n $HCD -r watchdog -e "bash $HCD"
