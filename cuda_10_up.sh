@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Copyright (c) 2018 Michael Neill Hartman. All rights reserved.
+# mnh_license@proton.me
+# https://github.com/hartmanm
+
 V="18.04"
 [[ $V == "16.04" ]] && cd /home/m1
 [[ $V == "18.04" ]] && cd /home/oros
