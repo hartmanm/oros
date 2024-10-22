@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Copyright (c) 2018 Michael Neill Hartman. All rights reserved.
+# mnh_license@proton.me
+# https://github.com/hartmanm
+
 BASH_VERSION="1.4"
 SUB_VERSION="p100"
 #CLIENT='"cryptodredge_v0_18_0_cuda_9_2"'
