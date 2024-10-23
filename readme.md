@@ -1,8 +1,8 @@
-# Scripts to control interaction with the overlord API, used as part of a centralized configuration and management system
+# scripts to control interaction with the overlord API, used as part of a centralized configuration and management system (previously openrig.net)
 
 ## Overview
 
-- scripts to control interaction with the overlord API, using a single configuration file to access the user's account.
+- scripts control interaction with the overlord API, using a single configuration file to access the user's account.
 
 - A ramdisk is generated on boot, executing the 2unix.sh script which downloads necessary files and programs from the overlord API to the ramdisk.
 
@@ -14,7 +14,7 @@
 - **Reliability**:  Be reliable despite using a USB key as the OS storage device
 - **Payment Simplification**: Minimize complexity related to user payments.
 - **Mobile Compatibility**: Ensure functionality on smartphones and tablets.
-- **User-Friendly Setup**: No need for user modification of the OS configuration file.
+- **User-Friendly Setup**: No need for user modification of the OS configuration file, simply download the configuration file from your account for each machine and put it on the configuration partition.
 
 ## Technical Overview
 
