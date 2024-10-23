@@ -6,7 +6,7 @@
 
 - A ramdisk is generated on boot, executing the 2unix.sh script which downloads necessary files and programs from the overlord API to the ramdisk.
 
-**openrig.net** was previously a service using oros and the overlord API.
+- **openrig.net** was previously (2018-2019) a service using oros and the overlord API.
 
 ## Features
 - **Centralized Management**: Change configurations for any number of machines from any internet-connected device.
